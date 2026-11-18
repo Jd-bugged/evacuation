@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --color-navy: #0a1f44;
+  --color-navy-deep: #06142e;
+  --color-info: #1f5fe0;
+  --color-info-dark: #174bb8;
+  --color-info-soft: #e8f0fe;
+  --color-alert: #d92d20;
+  --color-alert-dark: #b42318;
+  --color-alert-soft: #fdecea;
+  --color-caution: #f5b301;
+  --color-caution-ink: #7a5600;
+  --color-caution-soft: #fff5d1;
+  --color-safe: #12a150;
+  --color-safe-ink: #0b7a3b;
+  --color-safe-soft: #e3f6ea;
+  --color-cream: #f8f3e8;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-navy);
+    background: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-info);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes ping-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes page-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(12%);
+    opacity: 0;
+  }
+}
+
+@keyframes page-slide-in-left {
+  from {
+    transform: translateX(-8%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-page-slide-out-right {
+  animation: page-slide-out-right 220ms ease-in forwards;
+}
+
+.animate-page-slide-in-left {
+  animation: page-slide-in-left 280ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-slide-out-right,
+  .animate-page-slide-in-left {
+    animation-duration: 1ms;
+  }
+}
+
+.figma-custom-code-fragment {
+  display: contents;
+}
+
+.figma-bypass-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2147483647;
+  transform: translateY(-150%);
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  padding: 8px 12px;
+  font:
+    600 14px/1.2 system-ui,
+    sans-serif;
+  text-decoration: none;
+}
+
+.figma-bypass-link:focus {
+  transform: translateY(0);
+}
