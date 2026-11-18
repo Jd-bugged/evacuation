@@ -50,16 +50,19 @@ const nextConfig: NextConfig = {
   // Prerender source maps add ~100 MB per static build worker
   enablePrerenderSourceMaps: false,
   experimental: {
-    // Caps static build workers (~250-380 MB each) to lower `next build` peak memory
-    cpus: 2,
-    // Payload Admin uses Next Server Actions. In the Make preview proxy, the
-    // browser origin is the public sandbox host while `x-forwarded-host` points
-    // at the local dev server. Allow only that exact platform-provisioned host.
-    serverActions: {
-      allowedOrigins: makePublicPreviewOrigin ? [makePublicPreviewOrigin] : [],
-      bodySizeLimit: '6mb',
-    },
+  agentUpgrade: 'security',
+
+  // Caps static build workers (~250-380 MB each) to lower `next build` peak memory
+  cpus: 2,
+
+  // Payload Admin uses Next Server Actions. In the Make preview proxy, the
+  // browser origin is the public sandbox host while `x-forwarded-host` points
+  // at the local dev server. Allow only that exact platform-provisioned host.
+  serverActions: {
+    allowedOrigins: makePublicPreviewOrigin ? [makePublicPreviewOrigin] : [],
+    bodySizeLimit: '6mb',
   },
+},
   env: {
     NEXT_PUBLIC_SITE_URL: process.env.FIGMA_PUBLIC_URL || 'http://localhost:3000',
     // NOTE: Do not add FIGMA_OAUTH_CLIENT_SECRET, FIGMA_CONTENT_API_ACCESS_KEY,
